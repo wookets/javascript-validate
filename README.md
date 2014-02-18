@@ -1,38 +1,56 @@
 
-Modular declarative object validation for node.js
+Declarative validation for javascript.
 
 ## Install
 
-In package.json, under dependencies, you can do...
+In package.json,
 
-```"validate": "https://github.com/wookets/node-validate/0.1.0"```
+```"validate": "https://github.com/wookets/declare-and-validate-js/tarball/0.1.0"```
 
 ## Usage
 
 ```
-var validate = require('validate');
+var validate = require('validdate');
 
 var schema = {
-  name: {type: String, required: true},
+  name: {type: String, trim: true, min: 3, max: 15, required: true},
+  active: {type: Boolean, default: true},
   description: {type: String},
   age: {type: Number, min: 0, max: 150},
-  sex: {type: String, enum: ['m', 'f']},
-  active: {type: Boolean, default: true},
+  sex: {type: String, enum: ['m', 'f'], convert: function(value) { if (value == 'female') return 'f'; return value;}},
   address: {
-
+    street: {type: String},
+    state: {type: String, enum: ['CA','MN','NY','FL']},
+    zip: {type: String, match: /(^\d{5}$)|(^\d{5}-\d{4}$)/}
   },
-  createdOn: {type: Date, required: true, default: Date.now}
+  createdOn: {type: Date, required: true, default: new Date()}
 }
 
-var errors = validate(doc, schema);
+var document = {
+  name: 'Mr Meow Pants',
+  description: '<b>Something Great!</b>',
+  age: 45,
+  sex: 'f',
+  active: true,
+  address: {
+    street: '312 Hover Ave',
+    state: 'FL',
+    zip: '48392'
+  }
+}
+
+var errors = validate(document, schema);
 
 if (errors) {
   // errors happened, this is an array of what went wrong
 }
 
-// false was returned from validate, which means no errors
+// false was returned from validate, which means no errors so continue on
 
 
 ```
 
 
+## Other resources
+
+* http://validatejs.org/ - a similar project but with different syntax / features

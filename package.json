@@ -1,11 +1,11 @@
 {
-  "name": "declare-and-validate-js",
+  "name": "validdate",
   "version": "0.1.0",
   "main": "./index",
   "author": "wookets <wookets@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/wookets/declare-and-validate-js.git"
+    "url": "git://github.com/wookets/validdate-js.git"
   },
   "engines": {
     "node": ">= 0.10.x"
