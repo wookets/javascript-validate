@@ -15,6 +15,10 @@ var schema = {
     state: {type: String, enum: ['CA','MN','NY','FL']},
     zip: {type: String, match: /(^\d{5}$)|(^\d{5}-\d{4}$)/}
   },
+  comments: [{
+    title: {type: String, max: 15},
+    msg: {type: String}
+  }],
   createdOn: {type: Date, required: true, default: new Date()}
 }
 
@@ -28,7 +32,10 @@ var document = {
     street: '312 Hover Ave',
     state: 'FL',
     zip: '48392'
-  }
+  },
+  comments: [
+    {title: 'Read this', msg: 'jk haha'}
+  ]
 }
 
 describe('validate()', function() {
@@ -158,6 +165,14 @@ describe('validate()', function() {
     doc.age = 150;
     var errors = validate(doc, schema);
     assert(!errors);
+    done();
+  });
+
+  it('should validate array elements', function(done) {
+    var doc = _.cloneDeep(document);
+    doc.comments[0].title = 'djidjsijdlksjdlkfjdlksjdf';
+    var errors = validate(doc, schema);
+    assert.equal(errors['comments.0.title'].max, schema.comments[0].title.max);
     done();
   });
 });
