@@ -1,16 +1,15 @@
-
 Declarative validation for javascript.
 
 ## Install
 
 In package.json,
 
-```"validate": "https://github.com/wookets/declare-and-validate-js/tarball/0.1.0"```
+```"validate": "https://github.com/wookets/javascript-validate/tarball/0.1.1"```
 
-## Usage
+## Node Usage
 
 ```
-var validate = require('validdate');
+var validate = require('validate');
 
 var schema = {
   name: {type: String, trim: true, min: 3, max: 15, required: true},
