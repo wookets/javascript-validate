@@ -116,6 +116,9 @@ module.exports = function(document, schema, options) {
             errors[path] = {match: def.match};
           }
           break;
+        case 'mixed':
+        case Object:
+          break;
         default:
           validateDoc(value, def);
           break;
