@@ -7,6 +7,7 @@ module.exports = function(document, schema, options) {
 
   function validateDoc(doc, sch) {
     if (!_.isEmpty(path)) path += '.'; // means nested
+    if (_.isUndefined(doc)) doc = {}; // allows subdocs that are completely invalid to be properly invalidated
     for (var property in sch) {
       var def = sch[property];
       var value = doc[property];
