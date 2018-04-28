@@ -2,6 +2,8 @@ Declarative validation for javascript.
 
 ## Install
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/wookets/javascript-validate.svg)](https://greenkeeper.io/)
+
 In package.json,
 
 ```"validate": "https://github.com/wookets/javascript-validate/tarball/0.1.1"```
